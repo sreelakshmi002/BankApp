@@ -6,7 +6,7 @@ import java.util.Date;
 
 public class Customer extends Person{
    private Date customerSince;
-   private boolean isActive;
+   public boolean isActive;
 
    private String panNumber;
 

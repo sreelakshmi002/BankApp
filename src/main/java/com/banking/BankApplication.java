@@ -1,7 +1,9 @@
-package com.banking.models.user;
+package com.banking;
 
 import com.banking.enums.Gender;
 import com.banking.enums.JobStatus;
+import com.banking.models.user.Customer;
+import com.banking.models.user.Employee;
 
 import java.util.Date;
 
