@@ -1,5 +1,7 @@
 package com.banking.models.user;
 
+import com.banking.models.user.Enum.Gender;
+
 import java.util.Date;
 
 public abstract class Person {
@@ -7,19 +9,19 @@ public abstract class Person {
     protected  String firstName;
     protected  String lastName;
     protected  String address;
-    protected  int phoneNumber;
-    protected  Gender gender;
+    protected  String phoneNumber;
+    protected Gender gender;
     protected Date dateOfBirth;
     protected String email;
 
     abstract void printAllDetails();
 
 
-    void Person(){
+    public Person(){
 
     }
 
-    void Person(String id,String firstName,String lastName,String address,int phoneNumber,Gender gender,Date dateOfBirth,String email){
+  public Person(String id,String firstName,String lastName,String address,String phoneNumber,Gender gender,Date dateOfBirth,String email){
         this.id=id;
         this.firstName=firstName;
         this.lastName=lastName;
@@ -29,7 +31,8 @@ public abstract class Person {
         this.dateOfBirth=dateOfBirth;
         this.email=email;
     }
-    void printFullName(String firstName,String lastName){
+    public void printFullName(){
+
         System.out.println(firstName+" "+lastName);
     }
 
