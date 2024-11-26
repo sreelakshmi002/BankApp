@@ -1,4 +1,4 @@
-package com.banking.models.user.Enum;
+package com.banking.enums;
 
 public enum JobStatus {
     Onjob,Vaccations,Terminated,Dismissed

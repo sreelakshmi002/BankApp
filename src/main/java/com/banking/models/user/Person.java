@@ -1,6 +1,6 @@
 package com.banking.models.user;
 
-import com.banking.models.user.Enum.Gender;
+import com.banking.enums.Gender;
 
 import java.util.Date;
 
