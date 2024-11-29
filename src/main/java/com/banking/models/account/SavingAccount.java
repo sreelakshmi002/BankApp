@@ -10,14 +10,26 @@ public class SavingAccount extends Account{
 
 
     public SavingAccount(){
+
         super();
     }
-    public SavingAccount(String accNumber, double balance, Customer holder, LocalDate creationDate,double minimumBalance,double interestRate){
-            super(accNumber,balance,holder,creationDate);
-            this.minimumBalance=minimumBalance;
-            this.interestRate=interestRate;
+    public SavingAccount(String accNumber,Customer holder){
+
+            super(accNumber,holder);
+
+            this.minimumBalance=1000;
+            this.interestRate=3;
+            holder.addAccList(this);
     }
 
+    @Override
+    public String getDetails() {
+        String details=getaccDetails();
+        details= details+"\n"+" MinimumBalance:"+minimumBalance +" \n " +
+                "InterestRate: " +interestRate+ " \n ";
+
+        return details;
+    }
 
 
 

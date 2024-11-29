@@ -10,17 +10,19 @@ public abstract class Account {
     Customer holder;
     LocalDate creationDate;
 
+
+
     public  abstract  void withdraw();
     public abstract void calculateInterest();
 
     public Account(){
 
     }
-    public Account(String accNumber,double balance,Customer holder,LocalDate creationDate){
+    public Account(String accNumber,Customer holder){
         this.accNumber=accNumber;
-        this.balance=balance;
+        this.balance=0;
         this.holder=holder;
-        this.creationDate=creationDate;
+        this.creationDate=LocalDate.now();
     }
     public String getAccNumber(){
         return accNumber;
@@ -34,10 +36,16 @@ public abstract class Account {
         balance+=amount;
         System.out.println("balance after depositing amount "+balance);
     }
-    public String getDetail(){
-        return "Account Number: " + accNumber + ", Balance: " + balance +
-                ", Holder: " + holder.getName() + ", Created On: " + creationDate;
 
+
+    public abstract  String getDetails();
+    public String getaccDetails(){
+
+            String detail= "Account Number: " + accNumber + "\n"+
+                           " Balance: " + balance + " \n"+
+                           " Holder: " + holder.getName() +"\n"+
+                           "Created On: " + creationDate;
+            return detail;
     }
 
 }

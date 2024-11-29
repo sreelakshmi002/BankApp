@@ -1,5 +1,5 @@
 package com.banking.enums;
 
 public enum JobStatus {
-    Onjob,Vaccations,Terminated,Dismissed
+    ONJOB,VACATION,LEAVE,TERMINATED
 }

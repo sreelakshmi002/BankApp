@@ -1,14 +1,17 @@
 package com.banking.models.user;
 
 import com.banking.enums.Gender;
+import com.banking.models.account.Account;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class Customer extends Person{
    private Date customerSince;
    public boolean isActive;
-
    private String panNumber;
+   private List<Account>accountList=new ArrayList<>();
 
 
    public Customer(){
@@ -19,6 +22,10 @@ public class Customer extends Person{
        this.customerSince=customerSince;
        this.isActive=true;
        this.panNumber=panNumber;
+   }
+
+   public void addAccList(Account account){
+       accountList.add(account);
    }
    @Override
     public void printAllDetails() {
@@ -35,5 +42,11 @@ public class Customer extends Person{
        System.out.println("PanNumber : "+panNumber);
 
 
+    }
+
+    public void printAccount() {
+       for(Account acc:accountList){
+           System.out.println(acc.getAccNumber());
+       }
     }
 }

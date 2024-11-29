@@ -36,7 +36,7 @@ public abstract class Person {
         System.out.println(firstName+" "+lastName);
     }
     public String getName(){
-        return firstName+ lastName;
+        return firstName+" " +lastName;
     }
 
 }
