@@ -33,6 +33,15 @@ public class SavingAccount extends Account {
     @Override
     public void withdraw(double amount, Customer customer) {
 
+        if (customer==holder) {
+            if(balance-amount>minimumBalance){
+                balance-=amount;
+            }else {
+                System.out.println("Insufficient Balance!");
+            }
+        }else{
+            System.out.println("Given customer are not matching!");
+        }
 
     }
 
@@ -41,6 +50,17 @@ public class SavingAccount extends Account {
     public void calculateInterest() {
         double interest = balance * (interestRate / 100);
         System.out.println(interest);
+    }
+
+    @Override
+    public void deposit(double amount,String accountNumber) {
+        if (accountNumber.equals(accNumber)) {
+            balance+=amount;
+            System.out.println("Amount deposited : "+amount+" Balance after depositing :"+balance);
+        }else {
+            System.out.println("Wrong Account Number!");
+        }
+
     }
 
 

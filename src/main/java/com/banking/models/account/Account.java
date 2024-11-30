@@ -14,6 +14,7 @@ public abstract class Account {
     public abstract void withdraw(double amount, Customer customer);
 
     public abstract void calculateInterest();
+    public abstract void deposit(double amount,String accountNumber);
 
 
     public Account() {
