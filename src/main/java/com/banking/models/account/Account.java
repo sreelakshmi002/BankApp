@@ -12,7 +12,7 @@ public abstract class Account {
 
 
 
-    public  abstract  void withdraw();
+    public  abstract  void withdraw(double amount,Customer customer);
     public abstract void calculateInterest();
 
     public Account(){
@@ -46,6 +46,9 @@ public abstract class Account {
                            " Holder: " + holder.getName() +"\n"+
                            "Created On: " + creationDate;
             return detail;
+    }
+    public void transferMoney(){
+
     }
 
 }

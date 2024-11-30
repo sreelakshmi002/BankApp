@@ -9,6 +9,7 @@ public class SavingAccount extends Account{
     double interestRate;
 
 
+
     public SavingAccount(){
 
         super();
@@ -35,12 +36,27 @@ public class SavingAccount extends Account{
 
 
     @Override
-    public void withdraw() {
+    public void withdraw( double amount,Customer customer) {
+        if (holder==customer ) {
+            if(balance>minimumBalance){
+                balance-=amount;
+                System.out.println(balance);
+            }else{
+                System.out.println("insufficient balance");
+            }
+        }else {
+            System.out.println("mismatching detail,kindly fil correct details");
+        }
+
 
     }
 
+
+
+
     @Override
     public void calculateInterest() {
-
+    double interest=balance*(interestRate/100);
+        System.out.println(interest);
     }
 }

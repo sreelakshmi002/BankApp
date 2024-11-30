@@ -11,6 +11,7 @@ import java.util.Date;
 public class BankApplication {
     public static void main(String[] args){
       Customer c1=new Customer("1234","Sreelakshmi","Shaji","Address","9623536545", Gender.FEMALE, new Date(),"sree@gmail.com",new Date(),true,"0987");
+        Customer c2=new Customer("1234","Sreelakshmi","Shaji","Address","9623536545", Gender.FEMALE, new Date(),"sree@gmail.com",new Date(),true,"0987");
 //            c1.printAllDetails();
 //       Employee e1=new Employee("0657","Athul","B","Address","9031263696",Gender.MALE,new Date(),"athul@gmail.com","Associate","employee",new Date(),JobStatus.ONJOB,236,25536);
 //      e1.printAllDetails();
@@ -25,6 +26,7 @@ public class BankApplication {
 
 
         c1.printAccount();
+        s1.withdraw(1000,c2);
     }
 
 }
