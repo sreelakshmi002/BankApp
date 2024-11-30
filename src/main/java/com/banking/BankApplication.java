@@ -18,15 +18,16 @@ public class BankApplication {
 //      e1.transferBranch(896);
 //      e1.printBranch();
 
+
+//        System.out.println( s1.getDetails());
+//
+//        SavingAccount s2=new SavingAccount("ABCD1287",c1);
+//        System.out.println( s2.getDetails());
+
         SavingAccount s1=new SavingAccount("ABCD1234",c1);
-        System.out.println( s1.getDetails());
-
-        SavingAccount s2=new SavingAccount("ABCD1287",c1);
-        System.out.println( s2.getDetails());
-
 
         c1.printAccount();
-        s1.withdraw(1000,c2);
+        s1.withdraw(1000,c1);
     }
 
 }

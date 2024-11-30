@@ -4,59 +4,44 @@ import com.banking.models.user.Customer;
 
 import java.time.LocalDate;
 
-public class SavingAccount extends Account{
+public class SavingAccount extends Account {
     double minimumBalance;
     double interestRate;
 
 
-
-    public SavingAccount(){
-
+    public SavingAccount() {
         super();
     }
-    public SavingAccount(String accNumber,Customer holder){
 
-            super(accNumber,holder);
-
-            this.minimumBalance=1000;
-            this.interestRate=3;
-            holder.addAccList(this);
+    public SavingAccount(String accNumber, Customer holder) {
+        super(accNumber, holder);
+        this.minimumBalance = 1000;
+        this.interestRate = 3;
+        holder.addAccList(this);
     }
 
     @Override
     public String getDetails() {
-        String details=getaccDetails();
-        details= details+"\n"+" MinimumBalance:"+minimumBalance +" \n " +
-                "InterestRate: " +interestRate+ " \n ";
+        String details = getaccDetails();
+        details = details + "\n" + " MinimumBalance:" + minimumBalance + " \n " +
+                "InterestRate: " + interestRate + " \n ";
 
         return details;
     }
 
 
-
-
     @Override
-    public void withdraw( double amount,Customer customer) {
-        if (holder==customer ) {
-            if(balance>minimumBalance){
-                balance-=amount;
-                System.out.println(balance);
-            }else{
-                System.out.println("insufficient balance");
-            }
-        }else {
-            System.out.println("mismatching detail,kindly fil correct details");
-        }
+    public void withdraw(double amount, Customer customer) {
 
 
     }
-
-
 
 
     @Override
     public void calculateInterest() {
-    double interest=balance*(interestRate/100);
+        double interest = balance * (interestRate / 100);
         System.out.println(interest);
     }
+
+
 }
