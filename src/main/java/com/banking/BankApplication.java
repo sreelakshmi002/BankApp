@@ -25,9 +25,14 @@ public class BankApplication {
 //        System.out.println( s2.getDetails());
 
         SavingAccount s1=new SavingAccount("ABCD1234",c1);
+        SavingAccount s2=new SavingAccount("ABCD1267",c1);
 
         c1.printAccount();
-        s1.withdraw(1000,c1);
+//        s1.withdraw(1000,c1);
+        s1.deposit(10000,"ABCD1234");
+        s1.transferMoney(s1,s2,500);
+        s1.getBalance();
+        s2.getBalance();
     }
 
 }

@@ -63,5 +63,21 @@ public class SavingAccount extends Account {
 
     }
 
+    public void transferMoney(Account source,Account destination,double transferAmount){
+                if(source.balance>minimumBalance){
+                    System.out.println("You can transfer money");
+
+                    source.balance-=transferAmount;
+                    System.out.println("Balance after transferring money : "+source.balance);
+                    System.out.println("__________________");
+                    destination.balance+=transferAmount;
+                    System.out.println("Balance after receiving  money : "+destination.balance);
+
+                }else {
+                    System.out.println("MinimumBalance is required");
+                }
+
+    }
+
 
 }
