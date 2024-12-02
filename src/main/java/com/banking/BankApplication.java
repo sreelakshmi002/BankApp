@@ -33,6 +33,8 @@ public class BankApplication {
         s1.transferMoney(s1,s2,500);
         s1.getBalance();
         s2.getBalance();
+      System.out.println("__________________");
+        s1.transactionDetail();
     }
 
 }

@@ -1,10 +1,16 @@
 package com.banking.models.account;
 
+import com.banking.enums.TransactionType;
+import com.banking.models.transsactions.Transaction;
 import com.banking.models.user.Customer;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Date;
 
 public class SavingAccount extends Account {
+
+    ArrayList<Transaction> transactionHistory=new ArrayList<>();
     double minimumBalance;
     double interestRate;
 
@@ -18,6 +24,7 @@ public class SavingAccount extends Account {
         this.minimumBalance = 1000;
         this.interestRate = 3;
         holder.addAccList(this);
+
     }
 
     @Override
@@ -36,6 +43,8 @@ public class SavingAccount extends Account {
         if (customer==holder) {
             if(balance-amount>minimumBalance){
                 balance-=amount;
+                Transaction transaction=new Transaction( amount,TransactionType.WITHDRAWAL,new Date());
+                transactionHistory.add(transaction);
             }else {
                 System.out.println("Insufficient Balance!");
             }
@@ -56,6 +65,8 @@ public class SavingAccount extends Account {
     public void deposit(double amount,String accountNumber) {
         if (accountNumber.equals(accNumber)) {
             balance+=amount;
+            Transaction transaction=new Transaction(amount,TransactionType.DEPOSIT,new Date());
+            transactionHistory.add(transaction);
             System.out.println("Amount deposited : "+amount+" Balance after depositing :"+balance);
         }else {
             System.out.println("Wrong Account Number!");
@@ -64,7 +75,7 @@ public class SavingAccount extends Account {
     }
 
     public void transferMoney(Account source,Account destination,double transferAmount){
-                if(source.balance>minimumBalance){
+                if(source.balance-transferAmount>minimumBalance){
                     System.out.println("You can transfer money");
 
                     source.balance-=transferAmount;
@@ -73,11 +84,21 @@ public class SavingAccount extends Account {
                     destination.balance+=transferAmount;
                     System.out.println("Balance after receiving  money : "+destination.balance);
 
+                    Transaction transaction=new Transaction(transferAmount,TransactionType.TRANSFER,new Date());
+                    transactionHistory.add(transaction);
+
                 }else {
                     System.out.println("MinimumBalance is required");
                 }
 
     }
+    public void transactionDetail(){
+        for(Transaction t:transactionHistory){
+           t.printTransactionDetails();
+            System.out.println("__________");
+        }
+    }
+
 
 
 }
