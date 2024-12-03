@@ -7,48 +7,55 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class Customer extends Person {
+public class Customer extends Person  {
     private Date customerSince;
     public boolean isActive;
     private String panNumber;
     private List<Account> accountList = new ArrayList<>();
 
 
+    public List<Account> getAccountList() {
+        return accountList;
+    }
+
+    public void setAccountList(List<Account> accountList) {
+        this.accountList = accountList;
+    }
+
+    public Date getCustomerSince() {
+        return customerSince;
+    }
+
+    public void setCustomerSince(Date customerSince) {
+        this.customerSince = customerSince;
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
+    }
+
+    public String getPanNumber() {
+        return panNumber;
+    }
+
+    public void setPanNumber(String panNumber) {
+        this.panNumber = panNumber;
+    }
+
     public Customer() {
     }
 
     public Customer(String id, String firstName, String lastName, String address,
-                    String phoneNumber, Gender gender, Date dateOfBirth, String email, Date customerSince, boolean isActive, String panNumber) {
+                    String phoneNumber, Gender gender, Date dateOfBirth, String email,  String panNumber) {
         super(id, firstName, lastName, address, phoneNumber, gender, dateOfBirth, email);
-        this.customerSince = customerSince;
+
+        this.customerSince = new Date();
         this.isActive = true;
         this.panNumber = panNumber;
     }
 
-    public void addAccList(Account account) {
-        accountList.add(account);
-    }
-
-    @Override
-    public void printAllDetails() {
-        System.out.println("customer id :" + id);
-        System.out.println("FirstName :" + firstName);
-        System.out.println("LastName :" + lastName);
-        System.out.println("Address :" + address);
-        System.out.println("PhoneNumber :" + phoneNumber);
-        System.out.println("Gender :" + gender);
-        System.out.println("DateOfBirth :" + dateOfBirth);
-        System.out.println("Email id : " + email);
-        System.out.println("CustomerSince : " + customerSince);
-        System.out.println("isActive=true:");
-        System.out.println("PanNumber : " + panNumber);
-
-
-    }
-
-    public void printAccount() {
-        for (Account acc : accountList) {
-            System.out.println(acc.getAccNumber());
-        }
-    }
 }
