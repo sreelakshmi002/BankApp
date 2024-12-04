@@ -3,12 +3,14 @@ package com.banking.services;
 import com.banking.enums.Gender;
 import com.banking.models.user.Customer;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public interface ICustomerService {
 
     Customer createCustomer(String id, String firstName, String lastName, String address,
-                            String phoneNumber, Gender gender, Date dateOfBirth, String email, String panNumber);
+                            String phoneNumber, Gender gender, Date dateOfBirth, String email,
+                            String panNumber,ArrayList<Customer> customerArrayList);
 
 
 

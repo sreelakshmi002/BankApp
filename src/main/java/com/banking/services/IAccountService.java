@@ -4,8 +4,9 @@ import com.banking.models.account.Account;
 import com.banking.models.account.SavingAccount;
 import com.banking.models.user.Customer;
 
+import java.util.ArrayList;
+
 public interface IAccountService {
 
-    SavingAccount createSavingAccount(String accNumber, Customer holder, double minimumBalance,
-                                double interestRate);
+    SavingAccount createSavingAccount(String accNumber, Customer holder);
 }
