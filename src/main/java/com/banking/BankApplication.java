@@ -32,7 +32,7 @@ public class BankApplication {
 //    customerService.printPhoneNumber(createdCustomer);
 //    customerService.printAddress(createdCustomer);
         Customer createdCustomer1 = customerService.createCustomer("ABVG897", "Athul",
-                "Biju","Kalathil", "903654123",
+                "Biju","Kalathil", "903654121",
                 Gender.FEMALE, new Date(), "sree@gmail.com",
                 "ASDF123", customerArrayList);
 
@@ -40,6 +40,16 @@ public class BankApplication {
             customerService.printDetails(customer);
             System.out.println("______________________");
         }
+            customerService.updateCustomer(createdCustomer,"Afet123","mini","shaji",
+                    "302645874","Zen","Mini@123",customerArrayList);
+
+
+        System.out.println("after updating......");
+
+        customerService.getCustomer(customerArrayList,"903654123");
+        customerService.getUpdatedCustomer(createdCustomer);
+        customerService.removeCustomer(customerArrayList,"903654121");
+
     }
 }
 
