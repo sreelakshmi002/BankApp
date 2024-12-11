@@ -14,6 +14,30 @@ public class SavingAccount extends Account {
     double minimumBalance;
     double interestRate;
 
+    public double getInterestRate() {
+        return interestRate;
+    }
+
+    public void setInterestRate(double interestRate) {
+        this.interestRate = interestRate;
+    }
+
+    public double getMinimumBalance() {
+        return minimumBalance;
+    }
+
+    public void setMinimumBalance(double minimumBalance) {
+        this.minimumBalance = minimumBalance;
+    }
+
+    public ArrayList<Transaction> getTransactionHistory() {
+        return transactionHistory;
+    }
+
+    public void setTransactionHistory(ArrayList<Transaction> transactionHistory) {
+        this.transactionHistory = transactionHistory;
+    }
+
     public SavingAccount() {
         super();
     }

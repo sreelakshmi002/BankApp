@@ -74,20 +74,17 @@ public class CustomerServiceImpl implements ICustomerService {
     }
 
     @Override
-    public void removeCustomer( ArrayList<Customer> customerArrayList,String phoneNumber) {
+    public void removeCustomer(ArrayList<Customer> customerArrayList, String phoneNumber) {
 
-        for (Customer c:customerArrayList){
-            if (c.getPhoneNumber().equals(phoneNumber)){
-               customerArrayList.remove(c);
-                System.out.println("customer removed successfully");
-            }
-        }
+        Customer c = getCustomer(customerArrayList, phoneNumber);
+        customerArrayList.remove(c);
+        System.out.println("customer removed successfully");
 
 
     }
 
-    public void updateCustomer(Customer customer, String id, String firstName,
-                               String lastName, String phoneNumber,
+    public void updateCustomer(String phoneNumber,String firstName,
+                               String lastName,
                                String address, String email, ArrayList<Customer> customerArrayList) {
 
         Customer c = getCustomer(customerArrayList, phoneNumber);
@@ -95,26 +92,25 @@ public class CustomerServiceImpl implements ICustomerService {
             System.out.println("customer is not-existing.......");
             return;
         }
-            customer.setId(id);
-            customer.setFirstName(firstName);
-            customer.setLastName(lastName);
-            customer.setPhoneNumber(phoneNumber);
-            customer.setAddress(address);
-            customer.setEmail(email);
-            System.out.println("customer updated successfully.....");
 
+        c.setFirstName(firstName);
+        c.setLastName(lastName);
+        c.setAddress(address);
+        c.setEmail(email);
+        System.out.println("customer updated successfully.....");
 
 
     }
 
     @Override
-    public void getUpdatedCustomer(Customer customer) {
+    public void getUpdatedCustomer(ArrayList<Customer> customerArrayList, String phoneNumber) {
 
-        System.out.println(customer.getId());
-        System.out.println(customer.getFirstName());
-        System.out.println(customer.getLastName());
-        System.out.println(customer.getLastName());
-        System.out.println(customer.getAddress());
-        System.out.println(customer.getEmail());
+        Customer c = getCustomer(customerArrayList, phoneNumber);
+
+
+        System.out.println("FIRST NAME :"+c.getFirstName());
+        System.out.println("LAST NAME :"+c.getLastName());
+        System.out.println("ADDRESS :"+c.getAddress());
+        System.out.println("EMAIL :"+c.getEmail());
     }
 }

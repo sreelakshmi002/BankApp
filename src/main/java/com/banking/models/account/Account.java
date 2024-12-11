@@ -10,6 +10,37 @@ public class Account {
     Customer holder;
     LocalDate creationDate;
 
+    public String getAccNumber() {
+        return accNumber;
+    }
+
+    public void setAccNumber(String accNumber) {
+        this.accNumber = accNumber;
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
+
+    public LocalDate getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(LocalDate creationDate) {
+        this.creationDate = creationDate;
+    }
+
+    public Customer getHolder() {
+        return holder;
+    }
+
+    public void setHolder(Customer holder) {
+        this.holder = holder;
+    }
 
     public Account() {
 

@@ -19,9 +19,9 @@ public interface ICustomerService {
     public void printDetails(Customer customer);
     public void updateAddress(Customer customer,String address);
     public void printAddress(Customer customer);
-    public void updateCustomer(Customer customer,String id,String firstName, String lastName,String phoneNumber,
+    public void updateCustomer(String firstName, String lastName,String phoneNumber,
                                String address, String email,ArrayList<Customer> customerArrayList);
-    public void getUpdatedCustomer(Customer customer);
+    public void getUpdatedCustomer(ArrayList<Customer> customerArrayList, String phoneNumber);
     public Customer getCustomer(ArrayList<Customer> customerArrayList,String phoneNumber);
     public void removeCustomer( ArrayList<Customer> customerArrayList,String phoneNumber);
 
