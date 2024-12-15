@@ -25,22 +25,29 @@ public class BankApplication {
         Customer createdCustomer = customerService.createCustomer("ABVG897", "Sreelakshmi",
                 "Shaji", "Kalathil", "903654123",
                 Gender.FEMALE, new Date(), "sree@gmail.com",
-                "ASDF123", customerArrayList);
-        Customer createdCustomer1 = customerService.createCustomer("ABVG897", "Athul",
-                "Biju","Kalathil", "903654123",
-                Gender.MALE, new Date(), "sree@gmail.com",
-                "ASDF123", customerArrayList);
+                "ASDF123", customerArrayList,accountArrayList);
+        Customer createdCustomer1 = customerService.createCustomer("ABVG8257", "Athul",
+                "Biju","Kalathil", "903654122",
+                Gender.MALE, new Date(), "athul@gmail.com",
+                "ASDF123", customerArrayList,accountArrayList);
 
-        SavingAccount accDetails = accountService.savingAccount("ADFR1233", createdCustomer);
-        SavingAccount accDetails1 = accountService.savingAccount("ADFR1238", createdCustomer1);
+ 
+        SavingAccount accDetails = accountService.createdSavingAccount("ADFR1233", createdCustomer);
+        SavingAccount accDetails1 = accountService.createdSavingAccount("ADFR1238", createdCustomer1);
 
+        customerService.addAccountToCustomer(createdCustomer, accDetails);
+        customerService.addAccountToCustomer(createdCustomer1,accDetails1);
         System.out.println("Account details.................");
+
+
+
         accountService.printSavingAccountDetails(accDetails);
         accountService.deposit(1000, accDetails.getBalance(), accDetails);
         System.out.println("balance after depositing: "+accDetails.getBalance());
         accountService.withdraw(500,accDetails, accDetails.getBalance());
         accountService.transfer(1000,accDetails,accDetails1);
         System.out.println("Balance :"+accountService.balance(accDetails));
+
 
 
 

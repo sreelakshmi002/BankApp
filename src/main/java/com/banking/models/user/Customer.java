@@ -2,6 +2,7 @@ package com.banking.models.user;
 
 import com.banking.enums.Gender;
 import com.banking.models.account.Account;
+import com.banking.models.account.SavingAccount;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -11,15 +12,18 @@ public class Customer extends Person  {
     private Date customerSince;
     public boolean isActive;
     private String panNumber;
-    private List<Account> accountList = new ArrayList<>();
+    private List<SavingAccount> accountList = new ArrayList<>();
 
 
-    public List<Account> getAccountList() {
+    public List<SavingAccount> getAccountList() {
         return accountList;
     }
 
-    public void setAccountList(List<Account> accountList) {
+    public void setAccountList(List<SavingAccount> accountList) {
         this.accountList = accountList;
+    }
+    public void addAccount(SavingAccount account) {
+        this.accountList.add(account);
     }
 
     public Date getCustomerSince() {
@@ -56,6 +60,7 @@ public class Customer extends Person  {
         this.customerSince = new Date();
         this.isActive = true;
         this.panNumber = panNumber;
+        this.accountList=new ArrayList();
     }
 
 }

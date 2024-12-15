@@ -45,7 +45,7 @@ public class SavingAccount extends Account {
         super(accNumber, holder);
         this.minimumBalance = 1000;
         this.interestRate = 3;
-//        holder.addAccList(this);
+
 
     }
 }

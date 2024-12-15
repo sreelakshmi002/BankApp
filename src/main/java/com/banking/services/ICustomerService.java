@@ -1,6 +1,7 @@
 package com.banking.services;
 
 import com.banking.enums.Gender;
+import com.banking.models.account.SavingAccount;
 import com.banking.models.user.Customer;
 
 import java.util.ArrayList;
@@ -10,7 +11,7 @@ public interface ICustomerService {
 
     Customer createCustomer(String id, String firstName, String lastName, String address,
                             String phoneNumber, Gender gender, Date dateOfBirth, String email,
-                            String panNumber,ArrayList<Customer> customerArrayList);
+                            String panNumber, ArrayList<Customer> customerArrayList, ArrayList<SavingAccount> accountArrayList);
 
 
 
@@ -24,5 +25,6 @@ public interface ICustomerService {
     public void getUpdatedCustomer(ArrayList<Customer> customerArrayList, String phoneNumber);
     public Customer getCustomer(ArrayList<Customer> customerArrayList,String phoneNumber);
     public void removeCustomer( ArrayList<Customer> customerArrayList,String phoneNumber);
+    public void addAccountToCustomer(Customer customer, SavingAccount account);
 
 }

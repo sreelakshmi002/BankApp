@@ -1,6 +1,7 @@
 package com.banking.services.impl;
 
 import com.banking.enums.Gender;
+import com.banking.models.account.SavingAccount;
 import com.banking.models.user.Customer;
 import com.banking.services.ICustomerService;
 
@@ -11,7 +12,8 @@ public class CustomerServiceImpl implements ICustomerService {
     @Override
     public Customer createCustomer(String id, String firstName, String lastName, String address,
                                    String phoneNumber, Gender gender, Date dateOfBirth, String email,
-                                   String panNumber, ArrayList<Customer> customerArrayList) {
+                                   String panNumber, ArrayList<Customer> customerArrayList,
+                                   ArrayList<SavingAccount> accountArrayList) {
         for (Customer c : customerArrayList) {
 
             if (c.getPhoneNumber().equals(phoneNumber)) {
@@ -22,6 +24,7 @@ public class CustomerServiceImpl implements ICustomerService {
 
         Customer customer = new Customer(id, firstName, lastName, address, phoneNumber, gender,
                 dateOfBirth, email, panNumber);
+
         customerArrayList.add(customer);
         return customer;
 
@@ -83,6 +86,7 @@ public class CustomerServiceImpl implements ICustomerService {
 
     }
 
+
     public void updateCustomer(String phoneNumber,String firstName,
                                String lastName,
                                String address, String email, ArrayList<Customer> customerArrayList) {
@@ -113,4 +117,10 @@ public class CustomerServiceImpl implements ICustomerService {
         System.out.println("ADDRESS :"+c.getAddress());
         System.out.println("EMAIL :"+c.getEmail());
     }
+    @Override
+    public void addAccountToCustomer(Customer customer, SavingAccount account) {
+        customer.addAccount(account);
+        System.out.println("Account added successfully" );
+    }
+
 }
