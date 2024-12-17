@@ -11,7 +11,7 @@ public interface ICustomerService {
 
     Customer createCustomer(String id, String firstName, String lastName, String address,
                             String phoneNumber, Gender gender, Date dateOfBirth, String email,
-                            String panNumber, ArrayList<Customer> customerArrayList, ArrayList<SavingAccount> accountArrayList);
+                            String panNumber);
 
 
 
@@ -21,10 +21,10 @@ public interface ICustomerService {
     public void updateAddress(Customer customer,String address);
     public void printAddress(Customer customer);
     public void updateCustomer(String firstName, String lastName,String phoneNumber,
-                               String address, String email,ArrayList<Customer> customerArrayList);
-    public void getUpdatedCustomer(ArrayList<Customer> customerArrayList, String phoneNumber);
-    public Customer getCustomer(ArrayList<Customer> customerArrayList,String phoneNumber);
-    public void removeCustomer( ArrayList<Customer> customerArrayList,String phoneNumber);
+                               String address, String email);
+    public Customer getCustomer(String phoneNumber);
+    public void removeCustomer( String phoneNumber);
     public void addAccountToCustomer(Customer customer, SavingAccount account);
+
 
 }

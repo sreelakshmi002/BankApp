@@ -3,15 +3,20 @@ package com.banking.services.impl;
 
 import com.banking.models.account.SavingAccount;
 import com.banking.models.user.Customer;
-import com.banking.services.IAccountService;
+import com.banking.services.ISavingAccountService;
 
 import java.util.ArrayList;
 
-public class AccountServiceImpl implements IAccountService {
+public class SavingAccountServiceImpl implements ISavingAccountService {
+    static ArrayList<SavingAccount> accountArrayList = new ArrayList<>();
 
     @Override
-    public SavingAccount createdSavingAccount(String accNumber, Customer holder) {
+    public SavingAccount createSavingAccount(String accNumber, Customer holder) {
+
+
         SavingAccount createdSavingAccount = new SavingAccount(accNumber, holder);
+
+        accountArrayList.add(createdSavingAccount);
         return createdSavingAccount;
     }
 
@@ -26,16 +31,18 @@ public class AccountServiceImpl implements IAccountService {
     @Override
     public void minimumBalance(SavingAccount createdSavingAccount) {
 
-        createdSavingAccount.getMinimumBalance();
+
+        System.out.println("MinimumBalance :" + createdSavingAccount.getMinimumBalance());
+
     }
 
 
     @Override
     public double deposit(double depositAmount, double balance, SavingAccount createdSavingAccount) {
         if (depositAmount > 0) {
-            double newbalance = depositAmount + createdSavingAccount.getBalance();
-            createdSavingAccount.setBalance(newbalance);
-            return newbalance;
+            double newBalance = depositAmount + createdSavingAccount.getBalance();
+            createdSavingAccount.setBalance(newBalance);
+            return newBalance;
         } else {
             System.out.println("deposit amount should greater than 0");
             return createdSavingAccount.getBalance();
@@ -72,20 +79,11 @@ public class AccountServiceImpl implements IAccountService {
 
     @Override
     public void printSavingAccountDetails(SavingAccount createdSavingAccount) {
-        System.out.println("Account number:" + createdSavingAccount.getAccNumber() +
-                " \n customer " + createdSavingAccount.getHolder().getFirstName() + " "
-                + createdSavingAccount.getHolder().getLastName() +
-                " \n Balance :" + createdSavingAccount.getBalance() +
-                " \n minimumBalance :" + createdSavingAccount.getMinimumBalance());
-    }
-
-    @Override
-    public void printAccountDetails(ArrayList<SavingAccount> accountArrayList) {
-        for (SavingAccount account : accountArrayList) {
-            printSavingAccountDetails(account);
-        }
-
-
+        System.out.println("\n Account number:" + createdSavingAccount.getAccNumber() +
+                "\n customer " + createdSavingAccount.getHolder().getFirstName() + " " + createdSavingAccount.getHolder().getLastName() +
+                "\n Balance :" + createdSavingAccount.getBalance() +
+                "\n minimumBalance :" + createdSavingAccount.getMinimumBalance());
     }
 }
+
 

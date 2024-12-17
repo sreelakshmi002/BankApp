@@ -1,14 +1,13 @@
 package com.banking.services;
 
-import com.banking.models.account.Account;
 import com.banking.models.account.SavingAccount;
 import com.banking.models.user.Customer;
 
 import java.util.ArrayList;
 
-public interface IAccountService {
+public interface ISavingAccountService {
 
-        SavingAccount createdSavingAccount(String accNumber, Customer holder);
+        SavingAccount createSavingAccount(String accNumber, Customer holder);
 
         public void printSavingAccountDetails(SavingAccount  createdSavingAccount);
         public double balance(SavingAccount  createdSavingAccount);
@@ -17,7 +16,7 @@ public interface IAccountService {
         public double withdraw(double withdrawAmount,SavingAccount createdSavingAccount,double balance);
         public void transfer(double transferAmount, SavingAccount sourceAccount,
                              SavingAccount destinationAccount);
-        public void printAccountDetails(ArrayList<SavingAccount> accountArrayList);
+
 
 
 }

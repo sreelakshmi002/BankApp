@@ -9,17 +9,16 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class CustomerServiceImpl implements ICustomerService {
+    static ArrayList<Customer> customerArrayList = new ArrayList<>();
+
     @Override
     public Customer createCustomer(String id, String firstName, String lastName, String address,
                                    String phoneNumber, Gender gender, Date dateOfBirth, String email,
-                                   String panNumber, ArrayList<Customer> customerArrayList,
-                                   ArrayList<SavingAccount> accountArrayList) {
-        for (Customer c : customerArrayList) {
+                                   String panNumber ) {
 
-            if (c.getPhoneNumber().equals(phoneNumber)) {
-                return null;
-
-            }
+        if (getCustomer(phoneNumber) != null) {
+            System.out.println("Customer with this phone Number is already existed!");
+            return null;
         }
 
         Customer customer = new Customer(id, firstName, lastName, address, phoneNumber, gender,
@@ -27,28 +26,39 @@ public class CustomerServiceImpl implements ICustomerService {
 
         customerArrayList.add(customer);
         return customer;
-
     }
 
     @Override
     public void updatePhoneNumber(String phoneNumber, Customer customer) {
+
         customer.setPhoneNumber(phoneNumber);
     }
 
-
     @Override
     public void printPhoneNumber(Customer customer) {
-        System.out.println(customer.getPhoneNumber());
+
+        System.out.println("CustomerPhoneNumber :" + customer.getPhoneNumber());
     }
 
     @Override
     public void printDetails(Customer customer) {
-        System.out.println("id :" + customer.getId() + "\n name :" + customer.getFirstName() + customer.getLastName() + "\n Address :"
-                + customer.getAddress() + " \n phoneNumber: " + customer.getPhoneNumber() +
-                " \n Gender: " + customer.getGender() + " \n DOB: " + customer.getDateOfBirth() + " \n Email: " + customer.getEmail() +
-                "\n PanNumber: " + customer.getPanNumber());
-    }
 
+        System.out.println("\n id :" + customer.getId() +
+                           "\n name :" + customer.getFirstName() + customer.getLastName() +
+                           "\n Address :" + customer.getAddress() +
+                           "\n phoneNumber: " + customer.getPhoneNumber() +
+                           "\n Gender: " + customer.getGender() +
+                           "\n DOB: " + customer.getDateOfBirth() +
+                           "\n Email: " + customer.getEmail() +
+                           "\n PanNumber: " + customer.getPanNumber());
+
+            for (SavingAccount account:customer.getAccountList()){
+                System.out.println("Account Number: " + account.getAccNumber());
+                System.out.println("Balance: " + account.getBalance());
+                System.out.println("Minimum Balance: " + account.getMinimumBalance());
+             
+        }
+    }
 
     @Override
     public void updateAddress(Customer customer, String address) {
@@ -57,41 +67,36 @@ public class CustomerServiceImpl implements ICustomerService {
 
     @Override
     public void printAddress(Customer customer) {
-        System.out.println(customer.getAddress());
+        System.out.println("Address of the customer :" + customer.getAddress());
     }
 
-
-
-
-    public Customer getCustomer(ArrayList<Customer> customerArrayList, String phoneNumber) {
+    public Customer getCustomer(String phoneNumber) {
 
         for (Customer c : customerArrayList) {
-
             if (c.getPhoneNumber().equals(phoneNumber)) {
                 return c;
-
             }
         }
         return null;
-
     }
 
     @Override
-    public void removeCustomer(ArrayList<Customer> customerArrayList, String phoneNumber) {
+    public void removeCustomer(String phoneNumber) {
+        Customer c = getCustomer(phoneNumber);
 
-        Customer c = getCustomer(customerArrayList, phoneNumber);
-        customerArrayList.remove(c);
-        System.out.println("customer removed successfully");
-
+        if (c!=null) {
+            customerArrayList.remove(c);
+            System.out.println("Customer removed successfully");
+        } else {
+            System.out.println("Customer with same phoneNumber doesn't exists..");
+        }
 
     }
 
-
-    public void updateCustomer(String phoneNumber,String firstName,
+    public void updateCustomer(String phoneNumber, String firstName,
                                String lastName,
-                               String address, String email, ArrayList<Customer> customerArrayList) {
-
-        Customer c = getCustomer(customerArrayList, phoneNumber);
+                               String address, String email) {
+        Customer c = getCustomer(phoneNumber);
         if (c == null) {
             System.out.println("customer is not-existing.......");
             return;
@@ -102,25 +107,12 @@ public class CustomerServiceImpl implements ICustomerService {
         c.setAddress(address);
         c.setEmail(email);
         System.out.println("customer updated successfully.....");
-
-
     }
 
-    @Override
-    public void getUpdatedCustomer(ArrayList<Customer> customerArrayList, String phoneNumber) {
-
-        Customer c = getCustomer(customerArrayList, phoneNumber);
-
-
-        System.out.println("FIRST NAME :"+c.getFirstName());
-        System.out.println("LAST NAME :"+c.getLastName());
-        System.out.println("ADDRESS :"+c.getAddress());
-        System.out.println("EMAIL :"+c.getEmail());
-    }
     @Override
     public void addAccountToCustomer(Customer customer, SavingAccount account) {
         customer.addAccount(account);
-        System.out.println("Account added successfully" );
+        System.out.println("Account added successfully");
     }
 
 }
