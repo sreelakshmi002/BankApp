@@ -10,6 +10,9 @@ import java.util.ArrayList;
 public class SavingAccountServiceImpl implements ISavingAccountService {
     static ArrayList<SavingAccount> accountArrayList = new ArrayList<>();
 
+    // Incorrect :
+    // Should input only customer mobile number and find the customer from that input
+    // Add the created account to AccountList of customer also
     @Override
     public SavingAccount createSavingAccount(String accNumber, Customer holder) {
 
@@ -21,6 +24,8 @@ public class SavingAccountServiceImpl implements ISavingAccountService {
     }
 
 
+    // Input account Number and then print the balance
+    // Use correct name for the function
     @Override
     public double balance(SavingAccount createdSavingAccount) {
         double balance = createdSavingAccount.getBalance();
@@ -28,15 +33,19 @@ public class SavingAccountServiceImpl implements ISavingAccountService {
         return balance;
     }
 
+    // Input AccountNumber
+    // Use correct name for the function
     @Override
-    public void minimumBalance(SavingAccount createdSavingAccount) {
+    public void minimumBalance(String accountNumber) {
 
 
-        System.out.println("MinimumBalance :" + createdSavingAccount.getMinimumBalance());
 
     }
 
 
+    // Balance input?????
+    // Return type needs to be fixed.
+    // Print the appropriate statements.
     @Override
     public double deposit(double depositAmount, double balance, SavingAccount createdSavingAccount) {
         if (depositAmount > 0) {
@@ -49,6 +58,9 @@ public class SavingAccountServiceImpl implements ISavingAccountService {
         }
     }
 
+    // Balance input????
+    // Only input account number
+    // Minimum balance logic should be implemented
     @Override
     public double withdraw(double withdrawAmount, SavingAccount createdSavingAccount, double balance) {
         if (withdrawAmount > 0 && createdSavingAccount.getBalance() >= withdrawAmount) {
@@ -64,6 +76,8 @@ public class SavingAccountServiceImpl implements ISavingAccountService {
         return createdSavingAccount.getBalance();
     }
 
+    // Input two account numbers
+    // Minimum Balance check should also be implemented
     @Override
     public void transfer(double transferAmount, SavingAccount sourceAccount, SavingAccount destinationAccount) {
         if (transferAmount > 0 && sourceAccount.getBalance() >= transferAmount) {

@@ -28,6 +28,7 @@ public class CustomerServiceImpl implements ICustomerService {
         return customer;
     }
 
+    // Update using current mobile number
     @Override
     public void updatePhoneNumber(String phoneNumber, Customer customer) {
 
@@ -40,6 +41,13 @@ public class CustomerServiceImpl implements ICustomerService {
         System.out.println("CustomerPhoneNumber :" + customer.getPhoneNumber());
     }
 
+
+
+    // Also change the name to a more appropriate one
+    // Find customer using mobile number and print details
+
+    // Make the Account Printing section into a separate function
+    // Make use of function overloading to print account details (Passing Customer and passing Mobile number)
     @Override
     public void printDetails(Customer customer) {
 
@@ -52,23 +60,30 @@ public class CustomerServiceImpl implements ICustomerService {
                            "\n Email: " + customer.getEmail() +
                            "\n PanNumber: " + customer.getPanNumber());
 
-            for (SavingAccount account:customer.getAccountList()){
-                System.out.println("Account Number: " + account.getAccNumber());
-                System.out.println("Balance: " + account.getBalance());
-                System.out.println("Minimum Balance: " + account.getMinimumBalance());
-             
+        for (SavingAccount account:customer.getAccountList()){
+            System.out.println("Account Number: " + account.getAccNumber());
+            System.out.println("Balance: " + account.getBalance());
+            System.out.println("Minimum Balance: " + account.getMinimumBalance());
         }
+
+
     }
 
+
+
+    // Only receive Customer mobile number as input and then update address after finding customer
     @Override
     public void updateAddress(Customer customer, String address) {
         customer.setAddress(address);
     }
 
+
+    // No need for this function
     @Override
     public void printAddress(Customer customer) {
         System.out.println("Address of the customer :" + customer.getAddress());
     }
+
 
     public Customer getCustomer(String phoneNumber) {
 
@@ -106,8 +121,10 @@ public class CustomerServiceImpl implements ICustomerService {
         c.setLastName(lastName);
         c.setAddress(address);
         c.setEmail(email);
-        System.out.println("customer updated successfully.....");
+        System.out.println("\nCustomer updated successfully.....");
+        System.out.println("------------------------------------");
     }
+
 
     @Override
     public void addAccountToCustomer(Customer customer, SavingAccount account) {

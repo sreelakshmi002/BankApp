@@ -19,6 +19,7 @@ public class BankApplication {
     public static void main(String[] args) {
 
 
+        // Use appropriate names for variables
 
         Customer createdCustomer = customerService.createCustomer("ABVG897", "Sreelakshmi",
                 "Shaji", "Kalathil", "903654123",
@@ -30,14 +31,18 @@ public class BankApplication {
                 Gender.MALE, new Date(), "athul@gmail.com",
                 "ASDF123");
 
+
+
+
+        SavingAccount account1 = savingAccountService.createSavingAccount("ADFR1233",
+                createdCustomer);
+
+
         customerService.printDetails(createdCustomer);
 
-
-        SavingAccount accDetails = savingAccountService.createSavingAccount("ADFR1233",
-                createdCustomer);
         SavingAccount accDetails1 = savingAccountService.createSavingAccount("ADFR1238",
                 createdCustomer1);
-        savingAccountService.printSavingAccountDetails(accDetails);
+//        savingAccountService.printSavingAccountDetails(accDetails);
 
 //       customerService.addAccountToCustomer(createdCustomer, accDetails);
 //        customerService.addAccountToCustomer(createdCustomer1,accDetails1);

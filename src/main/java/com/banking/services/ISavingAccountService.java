@@ -11,7 +11,7 @@ public interface ISavingAccountService {
 
         public void printSavingAccountDetails(SavingAccount  createdSavingAccount);
         public double balance(SavingAccount  createdSavingAccount);
-        public void minimumBalance(SavingAccount  createdSavingAccount);
+        public void minimumBalance(String accountNumber);
         public double deposit(double depositAmount,double balance,SavingAccount createdSavingAccount);
         public double withdraw(double withdrawAmount,SavingAccount createdSavingAccount,double balance);
         public void transfer(double transferAmount, SavingAccount sourceAccount,
