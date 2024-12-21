@@ -6,39 +6,54 @@ import com.banking.models.user.Customer;
 import com.banking.services.ISavingAccountService;
 
 import java.util.ArrayList;
+import java.util.SortedMap;
 
 public class SavingAccountServiceImpl implements ISavingAccountService {
     static ArrayList<SavingAccount> accountArrayList = new ArrayList<>();
+    static ArrayList<Customer> customerList = new ArrayList<>();
 
     // Incorrect :
     // Should input only customer mobile number and find the customer from that input
     // Add the created account to AccountList of customer also
     @Override
-    public SavingAccount createSavingAccount(String accNumber, Customer holder) {
+    public SavingAccount createSavingAccount(String accNumber, String phoneNumber) {
 
+        Customer c = findCustomerByPhoneNumber(phoneNumber);
 
-        SavingAccount createdSavingAccount = new SavingAccount(accNumber, holder);
+        SavingAccount createdSavingAccount = new SavingAccount(accNumber, c);
 
+        c.addAccount(createdSavingAccount);
         accountArrayList.add(createdSavingAccount);
         return createdSavingAccount;
     }
 
+    @Override
+    public Customer findCustomerByPhoneNumber(String phoneNumber) {
+        for (Customer c : customerList) {
+            if (c.getPhoneNumber().equals(phoneNumber)) {
+                return c;
+            }
+        }
+        return null;
+    }
 
     // Input account Number and then print the balance
     // Use correct name for the function
     @Override
-    public double balance(SavingAccount createdSavingAccount) {
-        double balance = createdSavingAccount.getBalance();
-        System.out.println("balance " + balance);
-        return balance;
+    public void printBalance(String accNumber) {
+        SavingAccount s = returnAccountNumber(accNumber);
+        double balance = s.getBalance();
+        System.out.println("Bank balance :" + balance);
     }
+
 
     // Input AccountNumber
     // Use correct name for the function
     @Override
-    public void minimumBalance(String accountNumber) {
-
-
+    public void printMinimumBalance(String accountNumber) {
+        SavingAccount s = returnAccountNumber(accountNumber);
+        double minimumBalance = s.getMinimumBalance();
+        System.out.println("Minimum Balance of the account :" + minimumBalance);
 
     }
 
@@ -47,56 +62,68 @@ public class SavingAccountServiceImpl implements ISavingAccountService {
     // Return type needs to be fixed.
     // Print the appropriate statements.
     @Override
-    public double deposit(double depositAmount, double balance, SavingAccount createdSavingAccount) {
-        if (depositAmount > 0) {
-            double newBalance = depositAmount + createdSavingAccount.getBalance();
-            createdSavingAccount.setBalance(newBalance);
-            return newBalance;
-        } else {
-            System.out.println("deposit amount should greater than 0");
-            return createdSavingAccount.getBalance();
-        }
+    public double deposit(double depositAmount, String accNumber) {
+        SavingAccount s = returnAccountNumber(accNumber);
+        double newBalance = depositAmount + s.getBalance();
+        s.setBalance(newBalance);
+        return newBalance;
+
     }
 
     // Balance input????
     // Only input account number
     // Minimum balance logic should be implemented
     @Override
-    public double withdraw(double withdrawAmount, SavingAccount createdSavingAccount, double balance) {
-        if (withdrawAmount > 0 && createdSavingAccount.getBalance() >= withdrawAmount) {
-            double newBalance = createdSavingAccount.getBalance() - withdrawAmount;
-            createdSavingAccount.setBalance(newBalance);
-            System.out.println("new balance: " + newBalance);
-            return newBalance;
-        } else if (withdrawAmount <= 0) {
-            System.out.println("Withdrawal amount should greater than 0.");
+    public double withdraw(double withdrawAmount, String accNumber) {
+        SavingAccount s = returnAccountNumber(accNumber);
+        if (s != null) {
+            if ((s.getBalance() - withdrawAmount) >= s.getMinimumBalance()) {
+                double newBalance = s.getBalance() - withdrawAmount;
+                s.setBalance(newBalance);
+                System.out.println("new balance: " + newBalance);
+                return newBalance;
+            } else {
+                System.out.println("Insufficient balance for withdrawal.");
+            }
         } else {
-            System.out.println("Insufficient balance for withdrawal.");
+            System.out.println("Account not found!");
         }
-        return createdSavingAccount.getBalance();
+        return 0;
     }
+
 
     // Input two account numbers
     // Minimum Balance check should also be implemented
     @Override
-    public void transfer(double transferAmount, SavingAccount sourceAccount, SavingAccount destinationAccount) {
-        if (transferAmount > 0 && sourceAccount.getBalance() >= transferAmount) {
+    public void transfer(double transferAmount, String sourceAccountNumber, String destinationAccountNumber) {
+        SavingAccount sourceAccount = returnAccountNumber(sourceAccountNumber);
+        SavingAccount destinationAccount = returnAccountNumber(destinationAccountNumber);
+
+        if ((sourceAccount.getBalance() - transferAmount) >= sourceAccount.getMinimumBalance()) {
             sourceAccount.setBalance(sourceAccount.getBalance() - transferAmount);
             destinationAccount.setBalance(destinationAccount.getBalance() + transferAmount);
             System.out.println("Transfer Successful!");
-        } else if (transferAmount <= 0) {
-            System.out.println("Transfer amount must be greater than 0.");
         } else {
             System.out.println("Insufficient balance for transfer.");
         }
     }
 
     @Override
-    public void printSavingAccountDetails(SavingAccount createdSavingAccount) {
-        System.out.println("\n Account number:" + createdSavingAccount.getAccNumber() +
-                "\n customer " + createdSavingAccount.getHolder().getFirstName() + " " + createdSavingAccount.getHolder().getLastName() +
-                "\n Balance :" + createdSavingAccount.getBalance() +
-                "\n minimumBalance :" + createdSavingAccount.getMinimumBalance());
+    public void printSavingAccountDetails(String accNumber) {
+        SavingAccount s = returnAccountNumber(accNumber);
+        System.out.println("\n Account number:" + s.getAccNumber() +
+                "\n customer " + s.getHolder().getFirstName() + " " + s.getHolder().getLastName() +
+                "\n Balance :" + s.getBalance() +
+                "\n minimumBalance :" + s.getMinimumBalance());
+    }
+
+    @Override
+    public SavingAccount returnAccountNumber(String accNumber) {
+        for (SavingAccount account : accountArrayList) {
+            if (account.getAccNumber().equals(accNumber))
+                return account;
+        }
+        return null;
     }
 }
 

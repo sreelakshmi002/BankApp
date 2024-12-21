@@ -35,13 +35,12 @@ public class BankApplication {
 
 
         SavingAccount account1 = savingAccountService.createSavingAccount("ADFR1233",
-                createdCustomer);
+                "903654123");
 
 
-        customerService.printDetails(createdCustomer);
+        customerService.printCustomerDetails("903654123");
 
-        SavingAccount accDetails1 = savingAccountService.createSavingAccount("ADFR1238",
-                createdCustomer1);
+        SavingAccount account2 = savingAccountService.createSavingAccount("ADFR1238","903654122");
 //        savingAccountService.printSavingAccountDetails(accDetails);
 
 //       customerService.addAccountToCustomer(createdCustomer, accDetails);

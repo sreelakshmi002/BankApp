@@ -20,6 +20,7 @@ public class Customer extends Person  {
     }
 
     public void setAccountList(List<SavingAccount> accountList) {
+
         this.accountList = accountList;
     }
     public void addAccount(SavingAccount account) {
@@ -27,6 +28,7 @@ public class Customer extends Person  {
     }
 
     public Date getCustomerSince() {
+
         return customerSince;
     }
 
