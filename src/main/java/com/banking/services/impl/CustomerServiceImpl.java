@@ -4,8 +4,10 @@ import com.banking.enums.Gender;
 import com.banking.models.account.SavingAccount;
 import com.banking.models.user.Customer;
 import com.banking.services.ICustomerService;
+
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class CustomerServiceImpl implements ICustomerService {
     static ArrayList<Customer> customerArrayList = new ArrayList<>();
@@ -13,7 +15,7 @@ public class CustomerServiceImpl implements ICustomerService {
     @Override
     public Customer createCustomer(String id, String firstName, String lastName, String address,
                                    String phoneNumber, Gender gender, Date dateOfBirth, String email,
-                                   String panNumber ) {
+                                   String panNumber) {
 
         if (getCustomer(phoneNumber) != null) {
             System.out.println("Customer with this phone Number is already existed!");
@@ -26,56 +28,43 @@ public class CustomerServiceImpl implements ICustomerService {
         customerArrayList.add(customer);
         return customer;
     }
-
-
-    // Update using current mobile number
-    @Override
-    public void updatePhoneNumber(String phoneNumber, Customer customer) {
-
-        customer.setPhoneNumber(phoneNumber);
-    }
-
-    @Override
-    public void printPhoneNumber(Customer customer) {
-
-        System.out.println("CustomerPhoneNumber :" + customer.getPhoneNumber());
-    }
-
-
-
     // Also change the name to a more appropriate one
     // Find customer using mobile number and print details
-
     // Make the Account Printing section into a separate function
     // Make use of function overloading to print account details (Passing Customer and passing Mobile number)
     @Override
     public void printCustomerDetails(String phoneNumber) {
-   Customer c= getCustomer(phoneNumber);
-        System.out.println("\n id :" + c.getId() +
-                           "\n name :" + c.getFirstName() + c.getLastName() +
-                           "\n Address :" + c.getAddress() +
-                           "\n phoneNumber: " + c.getPhoneNumber() +
-                           "\n Gender: " + c.getGender() +
-                           "\n DOB: " + c.getDateOfBirth() +
-                           "\n Email: " + c.getEmail() +
-                           "\n PanNumber: " + c.getPanNumber());
-
-        for (SavingAccount account:c.getAccountList()){
-            System.out.println("Account Number: " + account.getAccNumber());
-            System.out.println("Balance: " + account.getBalance());
-            System.out.println("Minimum Balance: " + account.getMinimumBalance());
+        Customer c = getCustomer(phoneNumber);
+        if (c == null) {
+            System.out.println("Customer not found.");
+            return;
         }
+        System.out.println("Customer Details.....");
+        System.out.println("\n id :" + c.getId() +
+                "\n name :" + c.getFirstName() + c.getLastName() +
+                "\n Address :" + c.getAddress() +
+                "\n phoneNumber: " + c.getPhoneNumber() +
+                "\n Gender: " + c.getGender() +
+                "\n DOB: " + c.getDateOfBirth() +
+                "\n Email: " + c.getEmail() +
+                "\n PanNumber: " + c.getPanNumber());
 
 
+        printAccountDetails(phoneNumber);
     }
 
-
-
-    // Only receive Customer mobile number as input and then update address after finding customer
     @Override
-    public void updateAddress(Customer customer, String address) {
-        customer.setAddress(address);
+    public void printAccountDetails(String phoneNumber) {
+            Customer c = getCustomer(phoneNumber);
+             
+
+            for (SavingAccount account : c.getAccountList()) {
+                System.out.println("Account Number: " + account.getAccNumber());
+                System.out.println("Balance: " + account.getBalance());
+                System.out.println("Minimum Balance: " + account.getMinimumBalance());
+            }
     }
+
 
     public Customer getCustomer(String phoneNumber) {
 
@@ -91,7 +80,7 @@ public class CustomerServiceImpl implements ICustomerService {
     public void removeCustomer(String phoneNumber) {
         Customer c = getCustomer(phoneNumber);
 
-        if (c!=null) {
+        if (c != null) {
             customerArrayList.remove(c);
             System.out.println("Customer removed successfully");
         } else {

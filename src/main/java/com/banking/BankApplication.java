@@ -31,16 +31,12 @@ public class BankApplication {
                 Gender.MALE, new Date(), "athul@gmail.com",
                 "ASDF123");
 
-
-
-
         SavingAccount account1 = savingAccountService.createSavingAccount("ADFR1233",
                 "903654123");
 
-
         customerService.printCustomerDetails("903654123");
 
-        SavingAccount account2 = savingAccountService.createSavingAccount("ADFR1238","903654122");
+ //       SavingAccount account2 = savingAccountService.createSavingAccount("ADFR1238","903654122");
 //        savingAccountService.printSavingAccountDetails(accDetails);
 
 //       customerService.addAccountToCustomer(createdCustomer, accDetails);

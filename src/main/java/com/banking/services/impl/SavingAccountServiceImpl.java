@@ -6,7 +6,7 @@ import com.banking.models.user.Customer;
 import com.banking.services.ISavingAccountService;
 
 import java.util.ArrayList;
-import java.util.SortedMap;
+
 
 public class SavingAccountServiceImpl implements ISavingAccountService {
     static ArrayList<SavingAccount> accountArrayList = new ArrayList<>();
@@ -22,9 +22,12 @@ public class SavingAccountServiceImpl implements ISavingAccountService {
 
         SavingAccount createdSavingAccount = new SavingAccount(accNumber, c);
 
-        c.addAccount(createdSavingAccount);
-        accountArrayList.add(createdSavingAccount);
-        return createdSavingAccount;
+        if (c!=null) {
+            c.addAccount(createdSavingAccount);
+            accountArrayList.add(createdSavingAccount);
+            return createdSavingAccount;
+        }
+        return null;
     }
 
     @Override
@@ -64,9 +67,12 @@ public class SavingAccountServiceImpl implements ISavingAccountService {
     @Override
     public double deposit(double depositAmount, String accNumber) {
         SavingAccount s = returnAccountNumber(accNumber);
-        double newBalance = depositAmount + s.getBalance();
-        s.setBalance(newBalance);
-        return newBalance;
+        if (s!=null) {
+            double newBalance = depositAmount + s.getBalance();
+            s.setBalance(newBalance);
+            return newBalance;
+        }
+        return s.getBalance();
 
     }
 
@@ -111,10 +117,12 @@ public class SavingAccountServiceImpl implements ISavingAccountService {
     @Override
     public void printSavingAccountDetails(String accNumber) {
         SavingAccount s = returnAccountNumber(accNumber);
-        System.out.println("\n Account number:" + s.getAccNumber() +
-                "\n customer " + s.getHolder().getFirstName() + " " + s.getHolder().getLastName() +
-                "\n Balance :" + s.getBalance() +
-                "\n minimumBalance :" + s.getMinimumBalance());
+        if (s!=null) {
+            System.out.println("\n Account number:" + s.getAccNumber() +
+                    "\n customer " + s.getHolder().getFirstName() + " " + s.getHolder().getLastName() +
+                    "\n Balance :" + s.getBalance() +
+                    "\n minimumBalance :" + s.getMinimumBalance());
+        }
     }
 
     @Override

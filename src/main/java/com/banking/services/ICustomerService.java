@@ -15,10 +15,9 @@ public interface ICustomerService {
 
 
 
-    public void updatePhoneNumber(String phoneNumber,Customer customer);
-    public void printPhoneNumber(Customer customer);
+
     public void printCustomerDetails(String phoneNumber);
-    public void updateAddress(Customer customer,String address);
+    public void printAccountDetails(String phoneNumber);
     public void updateCustomer(String firstName, String lastName,String phoneNumber,
                                String address, String email);
     public Customer getCustomer(String phoneNumber);

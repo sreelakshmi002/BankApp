@@ -24,7 +24,9 @@ public class Customer extends Person  {
         this.accountList = accountList;
     }
     public void addAccount(SavingAccount account) {
-        this.accountList.add(account);
+        if (account != null) {
+            this.accountList.add(account);
+        }
     }
 
     public Date getCustomerSince() {
