@@ -11,7 +11,7 @@ public interface ISavingAccountService {
         public Customer findCustomerByPhoneNumber(String phoneNumber);
         public void printSavingAccountDetails(String accNumber);
         public SavingAccount returnAccountNumber(String accNumber);
-        public void printBalance(String accNumber);
+        public void printAccountBalance(String accNumber);
         public void printMinimumBalance(String accountNumber);
         public double deposit(double depositAmount,String accNumber);
         public double withdraw(double withdrawAmount,String accNumber);

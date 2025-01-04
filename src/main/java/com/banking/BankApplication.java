@@ -19,71 +19,31 @@ public class BankApplication {
     public static void main(String[] args) {
 
 
-        // Use appropriate names for variables
 
-        Customer createdCustomer = customerService.createCustomer("ABVG897", "Sreelakshmi",
+
+        Customer customer1 = customerService.createCustomer("ABVG897", "Sreelakshmi",
                 "Shaji", "Kalathil", "903654123",
                 Gender.FEMALE, new Date(), "sree@gmail.com",
                 "ASDF123");
 
-        Customer createdCustomer1 = customerService.createCustomer("ABVG8257", "Athul",
+        Customer customer2 = customerService.createCustomer("ABVG8257", "Athul",
                 "Biju", "Kalathil", "903654122",
                 Gender.MALE, new Date(), "athul@gmail.com",
                 "ASDF123");
 
+        System.out.println("Customers created:");
+        customerService.printCustomerDetails("903654123");
+//        customerService.printCustomerDetails("903654122");
+
         SavingAccount account1 = savingAccountService.createSavingAccount("ADFR1233",
                 "903654123");
 
-        customerService.printCustomerDetails("903654123");
+        System.out.println("Accounts created:");
+        savingAccountService.printSavingAccountDetails("ADFR1233");
 
- //       SavingAccount account2 = savingAccountService.createSavingAccount("ADFR1238","903654122");
-//        savingAccountService.printSavingAccountDetails(accDetails);
+//        customerService.printCustomerDetails("903654123");
 
-//       customerService.addAccountToCustomer(createdCustomer, accDetails);
-//        customerService.addAccountToCustomer(createdCustomer1,accDetails1);
-//        System.out.println("Account details.................");
-//
-//
-//
-//        savingAccountService.printSavingAccountDetails(accDetails);
-//        savingAccountService.deposit(1000, accDetails.getBalance(), accDetails);
-//        System.out.println("balance after depositing: "+accDetails.getBalance());
-//        savingAccountService.withdraw(500,accDetails, accDetails.getBalance());
-//        savingAccountService.transfer(1000,accDetails,accDetails1);
-//        System.out.println("Balance :"+savingAccountService.balance(accDetails));
-//
-//
-//
-//
-//        System.out.println("....................");
-//
-//
-//
-////    customerArrayList.add(createdCustomer);
-////    for(Customer c:customerArrayList){
-////      customerService.printDetails(c);
-////    customerService.updatePhoneNumber("9064521398",createdCustomer);
-////    customerService.printPhoneNumber(createdCustomer);
-////    customerService.printAddress(createdCustomer);
-//
-//
-//
-//            customerService.updateCustomer("903654123","mini","shaji",
-//                    "Zen","Mini@123");
-//
-//
-//        System.out.println("after updating......");
-//
-//        customerService.getCustomer("903654123");
-//
-//        System.out.println();
-//
-//        customerService.removeCustomer("903654121");
-//
-//        System.out.println("printing details after removing.....");
-//        System.out.println();
-//
-//
+
 
     }
 }

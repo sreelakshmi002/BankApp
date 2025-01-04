@@ -15,7 +15,7 @@ public interface ICustomerService {
 
 
 
-
+    public void printAccountDetails(Customer customer);
     public void printCustomerDetails(String phoneNumber);
     public void printAccountDetails(String phoneNumber);
     public void updateCustomer(String firstName, String lastName,String phoneNumber,

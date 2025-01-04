@@ -28,6 +28,9 @@ public class CustomerServiceImpl implements ICustomerService {
         customerArrayList.add(customer);
         return customer;
     }
+
+
+
     // Also change the name to a more appropriate one
     // Find customer using mobile number and print details
     // Make the Account Printing section into a separate function
@@ -50,19 +53,35 @@ public class CustomerServiceImpl implements ICustomerService {
                 "\n PanNumber: " + c.getPanNumber());
 
 
-        printAccountDetails(phoneNumber);
+        printAccountDetails(c);
+    }
+
+    @Override
+    public void printAccountDetails(Customer customer) {
+        List<SavingAccount> accounts = customer.getAccountList();
+        if (accounts == null) {
+            System.out.println("No accounts available for this customer.");
+            return;
+        }
+        System.out.println("Account Details:");
+        for (SavingAccount account : accounts) {
+            System.out.printf("Account Number: " + account.getAccNumber()+
+                    " \nBalance: "+ account.getBalance()+
+                    " \nMinimum Balance: "+account.getMinimumBalance());
+
+        }
+
     }
 
     @Override
     public void printAccountDetails(String phoneNumber) {
-            Customer c = getCustomer(phoneNumber);
-             
+        Customer customer = getCustomer(phoneNumber);
+        if (customer != null) {
+            printAccountDetails(customer);
+        } else {
+            System.out.println("No customer found with the provided phone number.");
+        }
 
-            for (SavingAccount account : c.getAccountList()) {
-                System.out.println("Account Number: " + account.getAccNumber());
-                System.out.println("Balance: " + account.getBalance());
-                System.out.println("Minimum Balance: " + account.getMinimumBalance());
-            }
     }
 
 

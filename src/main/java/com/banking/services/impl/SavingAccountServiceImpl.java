@@ -1,6 +1,5 @@
 package com.banking.services.impl;
 
-
 import com.banking.models.account.SavingAccount;
 import com.banking.models.user.Customer;
 import com.banking.services.ISavingAccountService;
@@ -9,6 +8,7 @@ import java.util.ArrayList;
 
 
 public class SavingAccountServiceImpl implements ISavingAccountService {
+
     static ArrayList<SavingAccount> accountArrayList = new ArrayList<>();
     static ArrayList<Customer> customerList = new ArrayList<>();
 
@@ -19,15 +19,17 @@ public class SavingAccountServiceImpl implements ISavingAccountService {
     public SavingAccount createSavingAccount(String accNumber, String phoneNumber) {
 
         Customer c = findCustomerByPhoneNumber(phoneNumber);
-
-        SavingAccount createdSavingAccount = new SavingAccount(accNumber, c);
-
-        if (c!=null) {
-            c.addAccount(createdSavingAccount);
-            accountArrayList.add(createdSavingAccount);
-            return createdSavingAccount;
+        if (c == null) {
+            System.out.println("Customer not found with phone number: " + phoneNumber);
+            return null;
         }
-        return null;
+
+        SavingAccount account = new SavingAccount(accNumber, c);
+
+        c.addAccount(account);
+        accountArrayList.add(account);
+        return account;
+
     }
 
     @Override
@@ -40,13 +42,41 @@ public class SavingAccountServiceImpl implements ISavingAccountService {
         return null;
     }
 
+    @Override
+    public void printSavingAccountDetails(String accNumber) {
+        SavingAccount s = returnAccountNumber(accNumber);
+        if (s != null) {
+            System.out.println("\n Account number:" + s.getAccNumber() +
+                    "\n customer " + s.getHolder().getFirstName() + " " + s.getHolder().getLastName() +
+                    "\n Balance :" + s.getBalance() +
+                    "\n minimumBalance :" + s.getMinimumBalance());
+        } else {
+            System.out.println("Account not found.");
+        }
+    }
+
+
+    @Override
+    public SavingAccount returnAccountNumber(String accNumber) {
+        for (SavingAccount account : accountArrayList) {
+            if (account.getAccNumber().equals(accNumber))
+                return account;
+        }
+        return null;
+    }
+
     // Input account Number and then print the balance
     // Use correct name for the function
     @Override
-    public void printBalance(String accNumber) {
+    public void printAccountBalance(String accNumber) {
         SavingAccount s = returnAccountNumber(accNumber);
-        double balance = s.getBalance();
-        System.out.println("Bank balance :" + balance);
+
+        if (s != null) {
+            double balance = s.getBalance();
+            System.out.println("Bank balance :" + balance);
+        } else {
+            System.out.println("Account not found.");
+        }
     }
 
 
@@ -67,7 +97,7 @@ public class SavingAccountServiceImpl implements ISavingAccountService {
     @Override
     public double deposit(double depositAmount, String accNumber) {
         SavingAccount s = returnAccountNumber(accNumber);
-        if (s!=null) {
+        if (s != null) {
             double newBalance = depositAmount + s.getBalance();
             s.setBalance(newBalance);
             return newBalance;
@@ -112,26 +142,6 @@ public class SavingAccountServiceImpl implements ISavingAccountService {
         } else {
             System.out.println("Insufficient balance for transfer.");
         }
-    }
-
-    @Override
-    public void printSavingAccountDetails(String accNumber) {
-        SavingAccount s = returnAccountNumber(accNumber);
-        if (s!=null) {
-            System.out.println("\n Account number:" + s.getAccNumber() +
-                    "\n customer " + s.getHolder().getFirstName() + " " + s.getHolder().getLastName() +
-                    "\n Balance :" + s.getBalance() +
-                    "\n minimumBalance :" + s.getMinimumBalance());
-        }
-    }
-
-    @Override
-    public SavingAccount returnAccountNumber(String accNumber) {
-        for (SavingAccount account : accountArrayList) {
-            if (account.getAccNumber().equals(accNumber))
-                return account;
-        }
-        return null;
     }
 }
 
