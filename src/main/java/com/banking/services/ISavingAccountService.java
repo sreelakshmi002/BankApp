@@ -8,7 +8,6 @@ import java.util.ArrayList;
 public interface ISavingAccountService {
 
         SavingAccount createSavingAccount(String accNumber, String phoneNumber);
-        public Customer findCustomerByPhoneNumber(String phoneNumber);
         public void printSavingAccountDetails(String accNumber);
         public SavingAccount returnAccountNumber(String accNumber);
         public void printAccountBalance(String accNumber);

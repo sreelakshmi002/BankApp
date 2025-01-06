@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class SavingAccountServiceImpl implements ISavingAccountService {
 
     static ArrayList<SavingAccount> accountArrayList = new ArrayList<>();
-    static ArrayList<Customer> customerList = new ArrayList<>();
+   CustomerServiceImpl customerService=new CustomerServiceImpl();
 
     // Incorrect :
     // Should input only customer mobile number and find the customer from that input
@@ -18,7 +18,7 @@ public class SavingAccountServiceImpl implements ISavingAccountService {
     @Override
     public SavingAccount createSavingAccount(String accNumber, String phoneNumber) {
 
-        Customer c = findCustomerByPhoneNumber(phoneNumber);
+        Customer c = customerService.getCustomer(phoneNumber);
         if (c == null) {
             System.out.println("Customer not found with phone number: " + phoneNumber);
             return null;
@@ -32,15 +32,7 @@ public class SavingAccountServiceImpl implements ISavingAccountService {
 
     }
 
-    @Override
-    public Customer findCustomerByPhoneNumber(String phoneNumber) {
-        for (Customer c : customerList) {
-            if (c.getPhoneNumber().equals(phoneNumber)) {
-                return c;
-            }
-        }
-        return null;
-    }
+
 
     @Override
     public void printSavingAccountDetails(String accNumber) {
